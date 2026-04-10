@@ -1,10 +1,9 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 
-public class SimpleFPSController : MonoBehaviour
+public class SimplePlayerControllerr : MonoBehaviour
 {
     public float speed = 5f;
-    public float mouseSensitivity = 200f;
-
+    public float mouseSensitivity = 100f;
     public Transform cameraPivot;
 
     float xRotation = 0f;
@@ -12,28 +11,30 @@ public class SimpleFPSController : MonoBehaviour
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+        Debug.Log("âœ… SimpleFPSController iniciado correctamente");
     }
 
     void Update()
     {
-        // ===== MOVIMIENTO =====
         float x = Input.GetAxis("Horizontal");
         float z = Input.GetAxis("Vertical");
+
+        if (x != 0 || z != 0)
+            Debug.Log($"Movimiento: x={x}, z={z}");
 
         Vector3 move = transform.right * x + transform.forward * z;
         transform.position += move * speed * Time.deltaTime;
 
-        // ===== MOUSE =====
         float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime;
         float mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity * Time.deltaTime;
 
-        // Rotación vertical (mirar arriba/abajo)
         xRotation -= mouseY;
         xRotation = Mathf.Clamp(xRotation, -90f, 90f);
 
-        cameraPivot.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
+        if (cameraPivot != null)
+            cameraPivot.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
 
-        // Rotación horizontal (girar cuerpo)
         transform.Rotate(Vector3.up * mouseX);
     }
 }
