@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.XR;
 
 public class SettingsCard : MonoBehaviour
@@ -56,5 +57,18 @@ public class SettingsCard : MonoBehaviour
     public void ToggleMute(bool isMuted)
     {
         AudioListener.volume = isMuted ? 0 : 1;
+    }
+    public void ReiniciarJuego()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    public void SalirJuego()
+    {
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#else
+        Application.Quit();
+#endif
     }
 }
