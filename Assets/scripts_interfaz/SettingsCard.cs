@@ -1,30 +1,60 @@
 using UnityEngine;
-using UnityEngine.EventSystems;
+using UnityEngine.XR;
 
 public class SettingsCard : MonoBehaviour
 {
     public GameObject panelSettings;
+    public GameObject panelControles;
+    private InputDevice rightController;
+
+    void Start()
+    {
+        rightController = InputDevices.GetDeviceAtXRNode(XRNode.RightHand);
+    }
+
+    void Update()
+    {
+        rightController.TryGetFeatureValue(
+            CommonUsages.secondaryButton, out bool bPressed);
+
+        if (bPressed)
+        {
+            if (panelControles.activeSelf)
+            {
+                panelControles.SetActive(false);
+            }
+            else if (panelSettings.activeSelf)
+            {
+                panelSettings.SetActive(false);
+            }
+            else
+            {
+                panelSettings.SetActive(true);
+            }
+        }
+    }
 
     public void AbrirSettings()
     {
         panelSettings.SetActive(true);
     }
 
-    // Se llama cuando el jugador hace clic fuera del panel
-    void Update()
+    public void AbrirControles()
     {
-        if (panelSettings.activeSelf)
-        {
-            if (Input.GetMouseButtonDown(0))
-            {
-                if (!RectTransformUtility.RectangleContainsScreenPoint(
-                    panelSettings.GetComponent<RectTransform>(),
-                    Input.mousePosition,
-                    Camera.main))
-                {
-                    panelSettings.SetActive(false);
-                }
-            }
-        }
+        panelControles.SetActive(true);
+    }
+    public void CerrarSettings()
+    {
+        panelSettings.SetActive(false);
+        panelControles.SetActive(false);
+    }
+
+    public void CerrarControles()
+    {
+        panelControles.SetActive(false);
+    }
+    public void ToggleMute(bool isMuted)
+    {
+        AudioListener.volume = isMuted ? 0 : 1;
     }
 }
