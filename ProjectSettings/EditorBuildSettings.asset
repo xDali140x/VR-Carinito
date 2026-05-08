@@ -6,17 +6,17 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/interfaz_inicio.unity
-    guid: 5640a1ff46de2ff449d7f5b5881cba9e
-  - enabled: 1
-    path: Assets/Scenes/CasaBienEscena.unity
-    guid: 4e9fef26e6adb88479ad1b9834a32d94
+    path: Assets/Scenes/Casa_interfaz.unity
+    guid: 4720fdae404735b48a13fcdeda1567ec
   - enabled: 1
     path: Assets/Scenes/CalleBienEscena.unity
     guid: 46c53220106d7d74da2376bdc31e4efb
-  - enabled: 1
-    path: Assets/Scenes/Casa_interfaz.unity
-    guid: 4720fdae404735b48a13fcdeda1567ec
+  - enabled: 0
+    path: Assets/Scenes/interfaz_inicio.unity
+    guid: 5640a1ff46de2ff449d7f5b5881cba9e
+  - enabled: 0
+    path: Assets/Scenes/CasaBienEscena.unity
+    guid: 4e9fef26e6adb88479ad1b9834a32d94
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: bfa1182bd221b4ca89619141f66f1260, type: 2}
     Unity.XR.WindowsMR.Settings: {fileID: 11400000, guid: dc5a169419fa04987b057f65238cf3ba, type: 2}
